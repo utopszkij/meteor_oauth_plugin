@@ -31,4 +31,5 @@ Process:
 9. click "configure ada login"
 
 
+Teszt site: http://valasztoimozgalom.hu:3000
 
