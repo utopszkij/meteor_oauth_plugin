@@ -49,11 +49,14 @@ var getTokenResponse = function (query) {
   var responseContent;
   try {
     // Request an access token
+    var redirect = OAuth._redirectUri('ada', config); 	// sajnos ez localhost -ot ad :( 
+    redirect = redirect.replace('localhost',window.location.hostname);
+
     responseContent = HTTP.get(
-      "https://adatom.hu/ada/v1/oauth2/token", {
+      "https://sso.edemokraciagep.org/ada/v1/oauth2/token", {
         params: {
           client_id: config.appId,
-          redirect_uri: OAuth._redirectUri('ada', config),
+          redirect_uri: redirect,
           client_secret: OAuth.openSecret(config.secret),
           code: query.code
         }
@@ -78,7 +81,7 @@ var getTokenResponse = function (query) {
 
 var getIdentity = function (accessToken, fields) {
   try {
-    return HTTP.get("https://adatom.hu/ada/v1/users/me", {
+    return HTTP.get("https://sso.edemokraciagep.org/ada/v1/users/me", {
       params: {
         access_token: accessToken,
         fields: fields.join(",")

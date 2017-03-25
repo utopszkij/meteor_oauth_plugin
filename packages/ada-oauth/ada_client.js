@@ -30,9 +30,16 @@ Ada.requestCredential = function (options, credentialRequestCompleteCallback) {
 
   var loginStyle = OAuth._loginStyle('ada', config, options);
 
+/* ez igy valamiért localhost -ot ir redirect uri -nak
   var loginUrl =
         'https://adatom.hu/ada/v1/oauth2/auth?client_id=' + config.appId +
         '&redirect_uri=' + OAuth._redirectUri('ada', config) +
+        '&display=' + display + '&scope=' + scope +
+        '&state=' + OAuth._stateParam(loginStyle, credentialToken, options && options.redirectUrl);
+*/
+  var loginUrl =
+        'https://sso.edemokraciagep.org/ada/v1/oauth2/auth?client_id=' + config.appId +
+        '&redirect_uri=' + 'https://'+window.location.hostname + '/_oauth/ada';
         '&display=' + display + '&scope=' + scope +
         '&state=' + OAuth._stateParam(loginStyle, credentialToken, options && options.redirectUrl);
 
