@@ -33,3 +33,24 @@ Process:
 
 Teszt site: http://valasztoimozgalom.hu:3000
 
+# Make ADA login button:
+
+define button in in template html:
+```html  
+  <button id="adaLoginBtn">ADA login</button>
+```
+
+define event handler in template js:
+
+```javascript
+"click #adaLoginBtn": function(event) {
+	var config = ServiceConfiguration.configurations.findOne({service: 'ada'});
+	var loginUrl =
+		    'https://adatom.hu/ada/v1/oauth2/auth?client_id=' + config.appId +
+		    '&redirect_uri=' + OAuth._redirectUri('ada', config) +
+		    '&display=' + display + '&scope=' + scope +
+		    '&state=' + OAuth._stateParam(loginStyle, credentialToken, options && options.redirectUrl);
+	window.open(loginRl,'ADA login','width=500,height=500,left=100,top=100');
+}
+```
+
