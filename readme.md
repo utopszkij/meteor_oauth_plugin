@@ -48,9 +48,9 @@ define event handler in template js:
 	var loginUrl =
 		    'https://adatom.hu/ada/v1/oauth2/auth?client_id=' + config.appId +
 		    '&redirect_uri=' + OAuth._redirectUri('ada', config) +
-		    '&display=' + display + '&scope=' + scope +
+		    '&display=' + display + 
 		    '&state=' + OAuth._stateParam(loginStyle, credentialToken, options && options.redirectUrl);
-	window.open(loginRl,'ADA login','width=500,height=500,left=100,top=100');
+	window.open(loginUrl,'ADA login','width=500,height=500,left=100,top=100');
 }
 ```
 
